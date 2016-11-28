@@ -1,0 +1,137 @@
+.spanColor{
+    background: rgba(255,42,20,.80);
+    border-radius: 20px;
+    text-align: center;
+}
+
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+    overflow: hidden;
+    transition: all .25s ease-out;
+    max-height: 400px;
+
+}
+
+.animate-show.ng-hide {
+    line-height: 0;
+    opacity: 0;
+    max-height: 0;
+}
+
+.button-full{
+    width: 100%;
+}
+
+.transitionAll{
+    transition: all .5s ease-in;
+}
+
+.startHidden{
+    display: none;
+}
+
+.flexColCenter{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+
+.flexSize{
+    display: flex;
+    flex-flow: row wrap;
+    flex-basis: 80px;
+    flex-shrink: 1;
+    flex-grow: 2;
+    /*flex: 1 2 100px;*/
+}
+
+[class^='button']{
+    max-width: 200px;
+}
+
+.border-sides{
+    border-right: 2px solid gray;
+    border-left: 2px solid gray;
+}
+
+.card{
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+}
+
+.card p{
+    color: ghostWhite;
+    text-overflow: ellipsis;
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+    transition: all ease-in 0.25s;
+    overflow: hidden;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+    opacity:0;
+    max-width:0;
+    color: gray;
+    /*transform: rotate(180deg);*/
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+    opacity:1;
+    max-width:100vw;
+    /*transform: rotate(0deg);*/
+}
+
+
+.isPlaying{
+    background: green;
+}
+
+.widgetContainer{
+    position:absolute;
+    z-index: 10;
+    overflow: hidden;
+    min-width: 100vw;
+    background-color: rgba(0,0,0,0.85);
+    height: 105px;
+    bottom: 0;
+}
+
+.widgetContainerHide{
+    height: 100px;
+    transition: all .5s ease-in;
+}
+
+.widgetContainerShow{
+    width: 90vw;    
+}
+
+.color-white {
+    color: white !important;
+}
+
+.orangeGrad{
+	background: linear-gradient(35deg,rgba(255,102,0,1),rgba(255,102,0,.50),rgba(255,102,0,.8));
+}
+
+.noScrollbar::-webkit-scrollbar{
+    display: none;
+}
+
+.listen-content{
+    position: absolute;
+    overflow: auto;
+    bottom: 0px;
+    top: 75px;
+    left: 0;
+    right: 0;
+    padding-bottom: 100px;
+}

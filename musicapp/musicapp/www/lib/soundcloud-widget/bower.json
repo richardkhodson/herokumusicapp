@@ -1,0 +1,25 @@
+{
+  "name": "soundcloud-widget",
+  "version": "0.0.1",
+  "description": "Soundcloud Widget",
+  "dependencies": {
+    "jquery": ">= 1.9.0",
+    "fastclick": "~1.0.6"
+  },
+  "homepage": "https://github.com/BlueBiteLLC/service-soundcloud-js",
+  "authors": [
+    "Matt O'Connell <mattoconnell408@gmail.com>",
+    "Tanner Nelson <tannernelson@gmail.com>"
+  ],
+  "keywords": [
+    "soundcloud",
+    "widget",
+    "jquery"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}

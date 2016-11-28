@@ -1,0 +1,106 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "plangular-3",
+        "scope": null,
+        "escapedName": "plangular-3",
+        "name": "plangular-3",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\i54626\\Desktop\\Case store\\Projects\\Web Dev\\musicapp"
+    ]
+  ],
+  "_from": "plangular-3@latest",
+  "_id": "plangular-3@3.1.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/plangular-3",
+  "_nodeVersion": "0.12.2",
+  "_npmUser": {
+    "name": "jxnblk",
+    "email": "jxnblk@gmail.com"
+  },
+  "_npmVersion": "3.1.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "plangular-3",
+    "scope": null,
+    "escapedName": "plangular-3",
+    "name": "plangular-3",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/plangular-3/-/plangular-3-3.1.2.tgz",
+  "_shasum": "18adb327db797a52077280968fcbe8f3411bd5d9",
+  "_shrinkwrap": null,
+  "_spec": "plangular-3",
+  "_where": "C:\\Users\\i54626\\Desktop\\Case store\\Projects\\Web Dev\\musicapp",
+  "author": {
+    "name": "Jxnblk"
+  },
+  "bugs": {
+    "url": "https://github.com/jxnblk/plangular/issues"
+  },
+  "dependencies": {
+    "audio-player": "^1.0.0",
+    "hhmmss": "^1.0.0",
+    "soundcloud-resolve-jsonp": "^1.3.0"
+  },
+  "description": "Angular directive for custom SoundCloud players",
+  "devDependencies": {
+    "blkmark": "^1.0.1",
+    "browserify": "^9.0.3",
+    "highlight.js": "^8.4.0",
+    "http-server": "^0.7.5",
+    "lodash": "^3.6.0",
+    "markdown-toc": "^0.11.0",
+    "marked": "^0.3.3",
+    "s3-cli": "^0.11.1",
+    "uglify-js": "^2.4.17",
+    "watch": "^0.14.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "18adb327db797a52077280968fcbe8f3411bd5d9",
+    "tarball": "https://registry.npmjs.org/plangular-3/-/plangular-3-3.1.2.tgz"
+  },
+  "gitHead": "3dbf0df7e2118ce8d2bd5fb7ac9ab4711db51c2e",
+  "homepage": "https://github.com/jxnblk/plangular",
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "jxnblk",
+      "email": "jxnblk@gmail.com"
+    }
+  ],
+  "name": "plangular-3",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jxnblk/plangular.git"
+  },
+  "scripts": {
+    "browserify": "browserify src/plangular.js --standalone=plangular -o dist/plangular.js",
+    "bump": "node scripts/bump",
+    "docs": "node docs/build",
+    "release": "npm run uglify && npm run s3",
+    "s3": "s3-cli put dist/plangular.min.js s3://jxnblk/plangular/3.1.2/plangular.min.js -P",
+    "serve": "http-server -p 8000",
+    "start": "npm run watch:js & npm run watch:docs & npm run serve",
+    "test": "mocha test",
+    "uglify": "npm run browserify && uglifyjs dist/plangular.js -o dist/plangular.min.js",
+    "watch:docs": "watch 'npm run docs' ./docs",
+    "watch:js": "watch 'npm run uglify' ./src"
+  },
+  "version": "3.1.2"
+}

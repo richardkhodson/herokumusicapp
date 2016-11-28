@@ -1,0 +1,15 @@
+{
+  "name": "musicapp",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.3.1"
+  },
+  "dependencies": {
+    "soundcloud": "^3.1.2",
+    "firebase": "^3.4.1",
+    "angularfire": "^2.0.2",
+    "soundcloud-widget": "*",
+    "jQuery": "^3.1.1",
+    "semver": "^4.3.4"
+  }
+}

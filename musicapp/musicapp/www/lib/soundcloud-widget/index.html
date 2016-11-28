@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SC - Custom</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="dist/soundcloud-widget.css">
+        <style>
+            body {
+                margin: 0
+            }
+        </style>
+	</head>
+	<body>
+        <div class="player">        
+        </div>
+        <script src='bower_components/fastclick/lib/fastclick.js'></script>
+		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script src="dist/soundcloud-widget.js"></script>
+        <script>
+            $( document ).ready(function() {
+
+                FastClick.attach(document.body);
+
+                $('.player').soundcloud({
+                    key: 'htuiRd1JP11Ww0X72T1C3g',
+                    playlists: [
+                        'https://soundcloud.com/tobiasvanschneider/sets/fade',
+                        'https://soundcloud.com/mattb0t/sets/chillhouse',
+                        'https://soundcloud.com/mattb0t/sets/futrmsic',
+                        'https://soundcloud.com/alexboogie/sets/comme-de-fuk-down-v1-nov12',
+                        'https://soundcloud.com/alexboogie/sets/m-xt-pe5',
+                        'https://soundcloud.com/alexboogie/sets/perpetual'
+                    ],
+                    autoplay: true,
+                    serverSideScript: 'https://mtag.io/curl'
+                });
+
+            });
+        </script>
+	</body>
+</html>

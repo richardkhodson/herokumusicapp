@@ -1,0 +1,56 @@
+<ion-view view-title="Dance Machine" hide-nav-bar="true">
+	<ion-content scroll="false" scrollbar-x="false" scrollbar-y="false" padding="false" class="padding">
+		<!-- searchbox -->
+		<div class="list list-inset">
+			<label style="float: left; width:  75%" class="item-input">
+				<i class="icon ion-search placeholder-icon"></i>
+				<input style="font-size: 2em;" type="text" placeholder="Search" ng-model="searchQuery" ng-keypress="vm.searchTrack(searchQuery,$event)">
+				<!-- <button class="button icon ion-gear-a"></button> -->
+			</label>
+			<button style="font-size: 3em; margin-right: 5px; float: right" class="button button-icon button-outline ion-search button-calm" type="submit" ng-click="vm.searchTrack(searchQuery)"></button>
+		</div>
+
+
+		<!-- Ioncard displaying search results -->
+		<div class="listen-content noScrollbar">
+			<div ng-repeat="detail in vm.searchResults" class="card-background-page animate-repeat" style="margin: 5px">
+				<div class="list">
+					<div ng-click="showing = (showing==true ? false : true)" class="item item-avatar orangeGrad">
+						<img ng-src="{{detail.user.avatar_url}}">
+						<h3 class="card-subtitle" ng-bind="detail.title" class="card-subtitle"></h3>
+						<button ng-show="vm.showingWidget" style="font-size: 2em; float: right" class="button button-outline button-icon ion-ios-play button-calm" ng-click="vm.embedSong(detail.id)"></button>
+						<button  ng-show="!vm.showingWidget" style="font-size: 2em; float: right" class="button button-outline button-icon ion-ios-play button-calm animate-show" ng-click="vm.streamSong(detail.id)"></button>
+
+					</div>
+					<!-- Bottom half of the result card. Only show after the header above is clicked -->
+					<div ng-show="showing" style="background: rgba(0,0,0,0.5); color: ghostWhite;" class="animate-show item-body">
+						<img class="full-image" ng-src="{{ detail.artwork_url }}">
+						<h2 style="color:ghostWhite" ng-bind="detail.genre" class="card-title"></h2>
+						<h2 style="color:ghostWhite" ng-bind="detail.status"></h2>
+						<p style="color:ghostWhite" ng-bind="detail.description"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Only show this if there are no results from the search -->
+		<div ng-if="vm.searchResults.length <= 0">No results for '{{ searchQuery }}'</div>
+
+		<!-- Get next array of 20 items from random search, current not working -->
+<!-- 		<button ng-if="vm.searchResults.length > 10" class="button button-block" ng-href="{{vm.searchResults.next_href}}">Next</button>
+ -->
+	 <div ng-class="{widgetShow: showingWidget,streamSbow: streamShow}" class="widgetContainer">
+	  <div ng-show="!vm.showingWidget" class="animate-show" style="display: flex; align-items: center; height: 100%">
+	 	<div style="border-right: 1px solid white">
+	   		<button style="font-size: 3em"  class="button button-icon ion-ios-pause button-assertive animate-show" ng-click="vm.streamPause(detail.id)"></button>
+      	</div>
+      	<div class="padding">
+      		<p>Now Playing</p>
+      	</div>
+      </div>
+      <div ng-show="vm.showingWidget"  id="soundCloudWidget" class="animate-show">
+      	<div style="padding: 2em; font-size=3em; color: rgba(255,102,0,1); text-align: center">Soundcloud Widget</div>
+      </div>
+   	</div>
+	</ion-content>
+</ion-view>

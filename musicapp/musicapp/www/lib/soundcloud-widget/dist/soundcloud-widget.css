@@ -1,0 +1,368 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400");
+html {
+  margin-bottom: 55px !important;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+div.soundcloud.widget {
+  font-family: -apple-system, "Roboto", sans-serif;
+  padding: 0;
+  color: #3B3F47;
+  background: #242424;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -400px;
+  height: 449px;
+  box-sizing: border-box;
+  transition: bottom 0.5s;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-overflow-scrolling: touch;
+}
+div.soundcloud.widget.expanded {
+  bottom: 0 !important;
+}
+div.soundcloud.widget.expanded header.main > section.mini button.action {
+  background-image: url("img/hide.svg") !important;
+}
+div.soundcloud.widget .prototype {
+  display: none;
+}
+div.soundcloud.widget header.main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 950;
+}
+div.soundcloud.widget header.main > section {
+  height: 49px;
+  background: #2E2E2E;
+  overflow: hidden;
+  position: relative;
+}
+div.soundcloud.widget header.main > section.controls > button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border: 0;
+  width: 33.3%;
+  background-color: #2E2E2E;
+  background-repeat: no-repeat;
+  background-size: 16px auto;
+  background-position: center;
+}
+div.soundcloud.widget header.main > section.controls > button.back {
+  background-image: url("img/back.svg");
+  left: 0;
+  background-position: 64px center;
+}
+div.soundcloud.widget header.main > section.controls > button.next {
+  background-image: url("img/next.svg");
+  right: 0;
+  background-position: 48px center;
+}
+div.soundcloud.widget header.main > section.controls > button.action {
+  left: 50%;
+  margin-left: -16.66%;
+}
+div.soundcloud.widget header.main > section.controls > button.action.play {
+  background-image: url("img/play.svg");
+}
+div.soundcloud.widget header.main > section.controls > button.action.pause {
+  background-image: url("img/pause.svg");
+}
+div.soundcloud.widget header.main > section.progress span {
+  font-size: 14px;
+  color: #FFFFFF;
+  position: absolute;
+  line-height: 49px;
+  top: 0;
+  bottom: 0;
+  width: 49px;
+  text-align: center;
+  pointer-events: none;
+}
+div.soundcloud.widget header.main > section.progress span.elapsed {
+  left: 0;
+}
+div.soundcloud.widget header.main > section.progress span.remaining {
+  right: 0;
+}
+div.soundcloud.widget header.main > section.progress .scrubber {
+  position: absolute;
+  left: 64px;
+  right: 64px;
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+div.soundcloud.widget header.main > section.progress .scrubber .bar {
+  position: absolute;
+  background: #242424;
+  height: 2px;
+  top: 50%;
+  left: 0;
+  right: 0;
+}
+div.soundcloud.widget header.main > section.progress .scrubber .handle {
+  position: absolute;
+  background: #FFFFFF;
+  width: 1px;
+  top: 12px;
+  bottom: 12px;
+  left: 0;
+}
+div.soundcloud.widget header.main > section.mini img.icon {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 33px;
+  height: 33px;
+  border: 0;
+  border-radius: 5px;
+  background: #47FFB0;
+  pointer-events: none;
+}
+div.soundcloud.widget header.main > section.mini div.information {
+  position: absolute;
+  top: 0;
+  left: 50px;
+  right: 50px;
+  bottom: 0;
+  pointer-events: none;
+}
+div.soundcloud.widget header.main > section.mini div.information .title {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  font-size: 14px;
+  color: #FFFFFF;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+div.soundcloud.widget header.main > section.mini div.information .subtitle {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  color: #CBCBCB;
+  text-align: center;
+  margin: 0;
+}
+div.soundcloud.widget header.main > section.mini button.action {
+  border: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: block;
+  width: 49px;
+  background-color: #2E2E2E;
+  background-repeat: no-repeat;
+  background-size: 14px auto;
+  background-position: center;
+  line-height: 49px;
+  text-align: center;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+div.soundcloud.widget header.main > section.mini button.action.play {
+  background-image: url("img/play.svg");
+}
+div.soundcloud.widget header.main > section.mini button.action.pause {
+  background-image: url("img/pause.svg");
+}
+div.soundcloud.widget .container {
+  position: relative;
+  color: #FFFFFF;
+  height: 100%;
+  padding-top: 147px;
+  overflow: hidden;
+}
+div.soundcloud.widget .playlist-stage {
+  position: relative;
+  height: 100%;
+}
+div.soundcloud.widget .playlist-stage > section {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: left 0.5s;
+}
+div.soundcloud.widget .playlist-stage > section.playlists {
+  left: -100%;
+}
+div.soundcloud.widget .playlist-stage > section.playlists.show {
+  left: 0;
+}
+div.soundcloud.widget .playlist-stage > section.playlists .playlists-scroller {
+  height: 100%;
+  overflow-y: scroll;
+  padding: 8px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+div.soundcloud.widget .playlist-stage > section.playlists .playlist {
+  color: #FFFFFF;
+  width: 164px;
+  float: left;
+  height: 220px;
+  position: relative;
+  margin: 8px;
+}
+div.soundcloud.widget .playlist-stage > section.playlists .playlist h5.title {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+div.soundcloud.widget .playlist-stage > section.playlists .playlist span.description {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: #CBCBCB;
+}
+div.soundcloud.widget .playlist-stage > section.playlists .playlist img.cover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 0;
+  width: 164px;
+  height: 164px;
+  background: purple;
+}
+div.soundcloud.widget .playlist-stage > section.tracks {
+  left: 100%;
+}
+div.soundcloud.widget .playlist-stage > section.tracks.show {
+  left: 0;
+}
+div.soundcloud.widget .playlist-stage > section.tracks .track-wrapper {
+  top: 0;
+  height: 100%;
+  padding-top: 49px;
+}
+div.soundcloud.widget .playlist-stage > section.tracks .track-wrapper .track-scroller {
+  overflow-y: scroll;
+  height: 100%;
+}
+div.soundcloud.widget .playlist-stage > section.tracks header.row {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 940;
+  background: #242424;
+}
+div.soundcloud.widget .playlist-stage > section.tracks header.row .title {
+  position: absolute;
+  right: 16px;
+  line-height: 49px;
+  height: 100%;
+  color: #CBCBCB;
+  font-size: 14px;
+  font-weight: 300;
+  margin: 0;
+}
+div.soundcloud.widget .playlist-stage > section.tracks header.row .back {
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: -apple-system, "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFFFFF;
+  background-color: #242424;
+  background-repeat: no-repeat;
+  background-size: 10px auto;
+  background-position: center;
+  background-image: url("img/left.svg");
+  left: 0;
+  background-position: 16px center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  padding-left: 32px;
+}
+div.soundcloud.widget .playlist-stage > section.tracks .row {
+  color: #FFFFFF;
+  display: block;
+  height: 49px;
+  position: relative;
+  padding-left: 16px;
+  overflow: hidden;
+}
+div.soundcloud.widget .playlist-stage > section.tracks .row.track .title {
+  position: absolute;
+  top: 6px;
+  left: 16px;
+  margin: 0;
+  font-size: 16px;
+  width: 100%;
+  padding-right: 96px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+div.soundcloud.widget .playlist-stage > section.tracks .row.track .subtitle {
+  position: absolute;
+  bottom: 6px;
+  left: 16px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 300;
+}
+div.soundcloud.widget .playlist-stage > section.tracks .row.track .duration {
+  position: absolute;
+  right: 16px;
+  top: 0;
+  height: 100%;
+  line-height: 49px;
+  font-size: 14px;
+  color: #CBCBCB;
+}
+div.soundcloud.widget .playlist-stage > section.tracks .row::after {
+  content: "";
+  width: 100%;
+  left: 16px;
+  height: 0.5px;
+  bottom: 0;
+  opacity: 0.5;
+  position: absolute;
+  background: #5D5D5D;
+}
+
+/*# sourceMappingURL=soundcloud-widget.css.map */

@@ -1,0 +1,33 @@
+<ion-view view-title="MATC Music App" hide-nav-bar="true" style="width: 100%">
+  <ion-content>
+  <div class="flexColCenter" style="padding-top:33vh; width:100%">
+    <button ng-if="vm.displayName" ng-click="vm.logout()">You are {{ vm.displayName }}</button>
+    <button class="button button-calm button-block" ng-if="!vm.displayName" ng-click="vm.showEmailLogin()">Login with Email</button>
+    <div class="animate-show" style="overflow:hidden" ng-show="vm.showLogin">
+        <div>
+            <label class="item item-input">
+              <span class="input-label  padding">Email:</span>
+              <input type="email" id="email" ng-model="vm.email" required>
+            </label>
+        </div>
+
+        <div>
+            <label class="item item-input" for="password">
+              <span class="input-label padding">Password:</span>
+              <input type="password" id="password" ng-model="vm.password" required ng-keypress="vm.loginWithEmail($event)">  
+            </label>
+        </div>
+
+        <div class="padding flexColCenter">
+            <button class="button button-small button-balanced button-block" ng-click="vm.loginWithEmail()">Login</button>
+            <button class="button button-small button-assertive button-block" ng-click="vm.showEmailLogin()">Cancel</button>
+        </div>
+
+        <div class="padding spanColor amimate-show" ng-show="vm.loginError.code">{{ vm.loginError.message }}
+        </div> 
+   </div>
+   <button class="button button-positive button-block  animate-show" style="transition-delay: 5s"ng-click="vm.signInProvider('google')" ng-hide ="vm.showLogin" >Login with Google</button>
+   </div>
+  </ion-content>
+</ion-view>
+

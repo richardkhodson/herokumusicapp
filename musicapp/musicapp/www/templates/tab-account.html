@@ -1,0 +1,16 @@
+<ion-view view-title="Account" hide-nav-bar="true">
+  <ion-content scroll="false" scrollbar-x="false" scrollbar-y="false" padding="false" class="padding">
+    <ion-list>
+    <ion-toggle  ng-model="vm.settings.enable_friends" ng-click="vm.toggleSetting(vm.settings.$id,'enable_friends',vm.settings.enable_friends)">
+        Enable Friends
+    </ion-toggle>
+    <ion-toggle  ng-model="vm.settings.embed_player" ng-click="vm.toggleSetting(vm.settings.$id,'embed_player',vm.settings.embed_player)">
+        Embed Music Player
+    </ion-toggle>
+        <ion-toggle  ng-model="vm.settings.show_suggest" ng-click="vm.toggleSetting(vm.settings.$id,'show_suggest',vm.settings.show_suggest)">
+        Show suggestions
+    </ion-toggle>
+    <div class="item" ng-click="vm.signout()">Sign out</div> 
+    </ion-list>
+  </ion-content>
+</ion-view>

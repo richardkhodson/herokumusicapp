@@ -1,0 +1,434 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400')
+
+html
+    margin-bottom: 55px !important
+
+body
+    padding: 0
+    margin: 0
+
+$padding: 16px
+
+$text_dark: #3B3F47
+$text_medium_dark: #9B9B9B
+
+$text_medium_light: #CBCBCB
+$text_light: #FFFFFF
+
+$bg_dark: #242424
+$bg_medium: #2E2E2E
+
+$text_interactive: #0087CB
+
+*
+    box-sizing: inherit
+
+div.soundcloud.widget
+    font-family: -apple-system, 'Roboto', sans-serif
+    padding: 0
+    color: $text_dark
+    background: $bg_dark
+
+    position: fixed
+    left: 0
+    right: 0
+    bottom: -400px
+    height: 449px
+
+    box-sizing: border-box
+
+
+    transition: bottom 0.5s
+
+    &.expanded
+        bottom: 0!important
+        header.main >section.mini button.action
+            background-image: url('img/hide.svg') !important
+
+    -webkit-touch-callout: none
+    -webkit-user-select: none
+    user-select: none
+    -webkit-overflow-scrolling: touch
+
+    .prototype
+        display: none
+
+    header.main
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        z-index: 950
+
+        >section
+            height: 49px
+            background: $bg_medium
+            overflow: hidden
+            position: relative
+
+            &.controls
+                >button
+                    position: absolute
+                    top: 0
+                    bottom: 0
+                    border: 0
+                    width: 33.3%
+                        
+                    background-color: $bg_medium
+                    background-repeat: no-repeat
+                    background-size: 16px auto
+                    background-position: center 
+
+                    &.back
+                        background-image: url('img/back.svg')
+                        left: 0
+                        background-position: 64px center 
+
+                    &.next
+                        background-image: url('img/next.svg')
+                        right: 0
+                        background-position: 48px center 
+
+                    &.action
+                            
+                        &.play
+                            background-image: url('img/play.svg')
+
+                        &.pause
+                            background-image: url('img/pause.svg')
+
+                        left: 50%
+                        margin-left: -16.66%
+
+
+            &.progress
+                span
+                    // background: yellow
+
+                    font-size: 14px
+                    color: $text_light
+                    position: absolute
+                    line-height: 49px
+                    top: 0
+                    bottom: 0
+                    width: 49px
+                    text-align: center
+                    pointer-events: none    
+
+                    &.elapsed
+                        left: 0
+
+                    &.remaining
+                        right: 0
+
+                .scrubber
+                    // background: blue
+
+                    position: absolute
+                    left: 64px
+                    right: 64px
+                    top: 0
+                    bottom: 0
+                    pointer-events: none
+
+                    .bar
+                        position: absolute
+                        background: $bg_dark
+                        height: 2px
+                        top: 50%
+                        left: 0
+                        right: 0
+
+                    .handle
+                        position: absolute
+                        background: $text_light
+                        width: 1px
+                        top: 12px
+                        bottom: 12px
+                        left: 0
+
+
+
+            &.mini
+                img.icon
+                    position: absolute
+                    top: 8px
+                    left: 8px
+
+                    width: 33px
+                    height: 33px
+
+                    border: 0
+                    border-radius: 5px
+                    background: #47FFB0
+
+                    pointer-events: none
+
+                div.information
+                    // background: red
+                    position: absolute
+                    top: 0
+                    left: 50px
+                    right: 50px
+                    bottom: 0
+
+                    pointer-events: none
+
+                    .title
+                        // background: yellow
+                        position: absolute
+                        top: 8px
+                        left: 0
+                        right: 0
+
+                        font-size: 14px
+                        color: $text_light
+                        text-align: center
+
+
+                        white-space: nowrap
+                        overflow: hidden
+                        text-overflow: ellipsis
+
+                        margin: 0
+
+                    .subtitle
+                        // background: green
+                        position: absolute
+                        bottom: 8px
+                        left: 0
+                        right: 0
+                        font-weight: 400
+                        
+                        white-space: nowrap
+                        overflow: hidden
+                        text-overflow: ellipsis
+
+                        font-size: 12px
+                        color: $text_medium_light
+                        text-align: center
+
+                        margin: 0
+
+                button.action
+                    border: 0
+                    // background: purple
+                    position: absolute
+                    right: 0
+                    top: 0
+                    bottom: 0
+
+                    display: block
+                    width: 49px
+                        
+                    background-color: $bg_medium
+
+                    &.play
+                        background-image: url('img/play.svg')
+
+                    &.pause
+                        background-image: url('img/pause.svg')
+
+                    background-repeat: no-repeat
+                    background-size: 14px auto
+                    background-position: center 
+
+                    line-height: 49px
+                    text-align: center
+                    color: $text_light  
+                    text-decoration: none
+
+
+    .container
+        position: relative
+        color: $text_light
+        height: 100%
+        padding-top: 49px * 3
+        overflow: hidden
+
+    .playlist-stage
+        position: relative
+        height: 100%
+
+        >section
+            position: absolute
+            width: 100%
+            height: 100%
+            transition: left 0.5s
+
+            &.playlists
+                left: -100%
+
+                &.show
+                    left: 0
+
+                .playlists-scroller
+                    height: 100%
+                    overflow-y: scroll
+
+
+                    padding: 8px 0
+                    display: flex
+                    flex-wrap: wrap
+                    justify-content: center
+
+                .playlist
+                    color: $text_light
+                    width: 164px
+                    float: left
+                    height: 220px
+                    position: relative
+                    margin: 8px
+
+                    h5.title
+                        position: absolute
+                        bottom: 24px
+                        left: 0
+                        right: 0
+                        margin: 0
+                        text-align: center
+
+                        color: $text_light
+                        font-size: 14px
+
+                        white-space: nowrap
+                        overflow: hidden
+                        text-overflow: ellipsis
+
+                    span.description
+                        position: absolute
+                        bottom: 8px
+                        left: 0
+                        right: 0
+                        text-align: center
+                        font-size: 12px
+                        color: $text_medium_light
+
+                    img.cover
+                        position: absolute
+                        left: 0
+                        top: 0
+                        border: 0
+
+                        width: 164px
+                        height: 164px
+
+                        background: purple
+
+            &.tracks
+                left: 100%
+
+                &.show
+                    left: 0
+
+                .track-wrapper
+                    top: 0
+                    height: 100%
+                    padding-top: 49px
+
+                    .track-scroller
+                        overflow-y: scroll
+                        height: 100%
+
+                
+                header.row
+                    position: absolute
+                    top: 0
+                    left: 0
+                    right: 0
+                    z-index: 940
+                    background: $bg_dark
+
+                    .title
+                        position: absolute
+                        right: 16px
+                        line-height: 49px
+                        height: 100%
+                        color: $text_medium_light
+                        font-size: 14px
+                        font-weight: 300
+                        margin: 0
+
+
+                    .back
+                        background: none
+                        border: none
+                        text-align: left
+                        font-family: -apple-system, 'Roboto', sans-serif
+                        font-size: 14px
+                        font-weight: 700
+                        color: $text_light
+
+
+                        background-color: $bg_dark
+                        background-repeat: no-repeat
+                        background-size: 10px auto
+                        background-position: center 
+                        background-image: url('img/left.svg')
+                        left: 0
+                        background-position: 16px center 
+
+                        position: absolute
+                        top: 0
+                        left: 0
+                        bottom: 0
+                        width: 50%
+
+                        padding-left: 32px
+
+                .row
+                    color: $text_light
+                    display: block
+                    height: 49px
+                    position: relative
+                    padding-left: 16px
+                    overflow: hidden
+
+                    &.track
+
+                        .title
+                            position: absolute
+                            top: 6px
+                            left: 16px
+
+                            margin: 0
+                            font-size: 16px
+
+                            width: 100%
+                            padding-right: 96px
+
+                            white-space: nowrap
+                            overflow: hidden
+                            text-overflow: ellipsis
+                        .subtitle
+                            position: absolute
+                            bottom: 6px
+                            left: 16px
+
+                            margin: 0
+                            font-size: 12px
+                            font-weight: 300
+
+                        .duration
+                            position: absolute
+                            right: 16px
+                            top: 0
+                            height: 100%
+                            line-height: 49px
+                            font-size: 14px
+                            color: $text_medium_light
+
+                    &::after
+                        content: ''
+                        width: 100%
+                        left: 16px
+                        height: 0.5px
+                        bottom: 0
+                        opacity: 0.5
+                        position: absolute
+                        background: #5D5D5D
+
+
+
+
+
