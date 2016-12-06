@@ -6,7 +6,7 @@
         <i class="icon ion-search placeholder-icon"></i>
         <input style="font-size: 2em;" type="text" placeholder="Search" ng-model="searchQuery" ng-keypress="vm.getResults(searchQuery,$event)">
       </label>
-      <button style="font-size: 3em; margin-right: 5px; float: right" class="button button-icon button-outline ion-search button-calm" type="submit" ng-click="vm.searchTrack(searchQuery)"></button>
+      <button style="font-size: 3em; margin-right: 5px; float: right" class="button button-icon button-outline ion-search button-calm" type="submit" ng-click="vm.getResults(searchQuery, $event)"></button>
     </div>
       <div class="list" ng-repeat="venue in vm.resultsBand">
         <a class="item item-thumbnail-left orangeGrad">

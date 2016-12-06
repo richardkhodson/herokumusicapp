@@ -11,7 +11,7 @@ var users = require('./routes/users');
 
 var app = express();
 
-//mongoose.connect('mongodb://localhost/MusicUsers');
+//mongoose.connect('mongodb://localhost/MusicUsers'); //localhost:3000
 mongoose.connect('mongodb://heroku_m241n5c5:u7bls83rrlforusoefhknvi5pl@ds119738.mlab.com:19738/heroku_m241n5c5');
 
 // view engine setup

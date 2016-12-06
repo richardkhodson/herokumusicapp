@@ -1,80 +1,23 @@
 (function(){
     angular.module('musicapp')
-        .service('loginService',loginService);
+        .service('loginService', function ($q,$log, $http, $localStorage){
 
-    function loginService($q,$firebaseArray,$firebaseAuth,$firebaseObject,$log,$window, $http){
-
+        var user;
+        if($localStorage.user) {
+            user = $localStorage.user;
+        }
         var ls = this;
         var log = $log;
-        ls.signIn 	   = signIn;
-        ls.signOut	   = signOut;
-        ls.getTime	   = getTime;
-        // ls.signOut();
-        ls.isLoggedIn  = isLoggedIn();
-        ls.currentUser = setCurrentUser();
-        ls.authDataCheck = authDataCheck;
-        ls.getUserSettings = getUserSettings;
+        ls.signOut = signOut;
+        ls.getTime = getTime;
         ls.loginWithEmail = loginWithEmail;
+        ls.isLoggedIn = isLoggedIn;
 
-        function authDataCheck(){
-            var deferred = $q.defer();
-            firebase.auth().onAuthStateChanged(function(user){
-                if (user){
-                    log.info("user is " + user.providerData[0].displayName)
-                    deferred.resolve(user)
-                }else{
-                    log.error("failed")
-                }
-            })
-            return deferred.promise;
-        }
 
-        function setCurrentUser(){
-            var user = firebase.auth().currentUser,
-                name , email, photoURL, uid;
-            if (user !== null){
-                ls.currentUser = {
-                    name: user.displayName,
-                    email: user.email,
-                    photoURL: user.photoURL,
-                    uid: user.uid,
-                    today: getTime()
-                };
-                ls.isLoggedIn = true;
-                // log(ls.currentUser)
-            } else{
-                ls.currentUser = undefined;
-                ls.isLoggedIn = false;
-            }
-        }
-
-        function signIn(provider){
-            var auth = $firebaseAuth();
-            return auth.$signInWithPopup(provider)
-                .then(loginSuccess).then(function(data){
-
-                    ls.isLoggedIn = isLoggedIn();
-                })
-                .catch(loginError);
-        }
-
-        function signOut(msg){
-            var auth = $firebaseAuth();
-            var user = firebase.auth().currentUser;
-            var ref = firebase.database().ref('users/' + user.uid);
-            ls.user = $firebaseObject(ref);
-            ls.user.$loaded().then(function(){
-                ref.update({
-                    logoutTime: getTime(),
-                    active: false
-                })
-            }).then(function(){
-                auth.$signOut();
-                ls.currentUser = undefined;
-                ls.isLoggedIn = isLoggedIn();
-            }, function(error){
-                log.error("An error occurred: " + error)
-            })
+        function signOut(){
+            user = undefined;
+            $localStorage.user = undefined;
+            return user;
         }
 
         function loginWithEmail(email,password) {
@@ -90,7 +33,8 @@
             })
                 .then(
                     function(successResponse) {
-                        var user = successResponse.data;
+                        user = successResponse.data;
+                        $localStorage.user = user;
                         deferred.resolve(user);
                     }, 
                     function(errorResponse) {
@@ -103,14 +47,7 @@
         }
 
         function isLoggedIn(){
-            firebase.auth().onAuthStateChanged(function(user){
-                if (user){
-                    setCurrentUser();
-                    return ls.isLoggedIn = true;
-                }else{
-                    return ls.isLoggedIn = false;
-                }
-            });
+           return user;
         }
 
         function getTime(){
@@ -133,35 +70,6 @@
             return dateObject
         }
 
-        function getUserSettings(){
-            var deferred = $q.defer();
-            ls.authDataCheck().then(function(user){
-                var settingRef = firebase.database().ref().child('user_information/').child(user.uid);
-                var objectSetting = $firebaseObject(settingRef);
-                objectSetting.$loaded().then(function(){
-                    var settings = objectSetting;
-                    if (settings.enable_friends === undefined){
-                        settingRef.set({
-                                enable_friends: true,
-                                show_suggest: true,
-                                embed_player: true
-                            })
-                            .then(function(){
-                                ls.settings = {
-                                    enableFriends: true,
-                                    showSuggest: true,
-                                    embedPlayer: true
-                                };
-                                deferred.resolve(ls.settings)
-                            })
-                    } else {
-                        ls.settings = objectSetting;
-                        deferred.resolve(ls.settings)
-                    }
-                })
-            });
-            return deferred.promise;
-        }
 
-    }
+    })
 }());

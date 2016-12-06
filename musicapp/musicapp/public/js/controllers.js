@@ -1,7 +1,7 @@
 angular.module('musicapp.controllers', [])
 
 
-.controller('ArtistCtrl', function($http,MusicService,$log,loginService,$scope) {
+.controller('ArtistCtrl', function($http,MusicService,$log,loginService) {
   var vm = this;
   var showing = false; 
   vm.getTracks = getTracks; 
@@ -12,26 +12,10 @@ angular.module('musicapp.controllers', [])
   vm.streamPause = streamPause; 
   vm.initCloud = MusicService.soundCloud.scInit();
   vm.mySC = MusicService.soundCloud;
-  vm.user = loginService.currentUser.uid;
-  vm.getUserSettings = getUserSettings;
-
-
-  $scope.$on('$ionicView.enter',function(e){
-    getUserSettings(); 
-  });
-
-
-  function getUserSettings(){
-    var id = vm.user; 
-    var ref = firebase.database().ref().child('user_information/');
-    ref.child(id).once('value',function(snapshot){
-      var data = snapshot.val();
-      vm.showingWidget = data.embed_player;
-    })
-  } 
+  vm.user = loginService.isLoggedIn();
 
  function embedSong(song){
-  console.log("Embed song")
+  console.log("Embed song");
      var container = document.getElementById('soundCloudWidget');
      $log.info(container);
      vm.showingWidget = true; 
@@ -72,7 +56,6 @@ angular.module('musicapp.controllers', [])
       vm.searchResults = tracks;
     });
   }
-  getUserSettings();
    getTracks();
 })
 
@@ -82,7 +65,7 @@ angular.module('musicapp.controllers', [])
   vm.MusicService = MusicService; 
 })
 
-.controller('landingCtrl', function (loginService,$q,MusicService,$http,$scope, $firebaseAuth, $state, $log, $firebaseObject) {
+.controller('landingCtrl', function (loginService,$q,MusicService,$http,$scope, $state, $log) {
   vm = this;
   vm.showLogin = false;
   vm.loginWithEmail = loginWithEmail;
@@ -129,7 +112,7 @@ angular.module('musicapp.controllers', [])
         return MusicService.isEnter(key)
       }
       function getResults(query,key){
-        if(isEnter(key)){
+        if(isEnter(key)|| key.isIonicTap ){
           $log.info("Getting results");
           bandsintown.getBand(query).then(function(response){
              song.resultsBand = response; 
@@ -138,9 +121,8 @@ angular.module('musicapp.controllers', [])
         }
       }
     })
-    .controller('AccountCtrl', function($scope,loginService,$firebaseArray,$firebaseObject,$log,$state) {
+    .controller('AccountCtrl', function($scope,loginService, $log,$state) {
       var vm = this;
-      vm.getUserSettings = getUserSettings;
       vm.toggleSetting   = toggleSetting;
       vm.user            = loginService.currentUser;
       vm.signout         = signOut; 
@@ -152,24 +134,12 @@ angular.module('musicapp.controllers', [])
       }
     
       function toggleSetting(id,setting,set){
-        var user = vm.user; 
-        var ref = firebase.database().ref().child('user_information/');
-        console.log(user.uid)
-        ref.child(id).once("value",function(snapshot){
-          var data = snapshot.val();
-          ref.child(id).child(setting).set(set);
-        })
+        var user = vm.user;
         console.log(vm.settings)
       }
     
       $scope.$on('$ionicView.enter',function(e){
-        getUserSettings(); 
       });
 
-
-      function getUserSettings(){
-        var ref = firebase.database().ref().child('user_information/').child(loginService.currentUser.uid);
-         vm.settings = $firebaseObject(ref);
-      }
 });
 

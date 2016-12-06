@@ -8,11 +8,11 @@
 var app = angular.module('musicapp', [
     'ionic', 
     'musicapp.controllers', 
-    'firebase'
+    'ngStorage'
     ])
 
 .run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
+  $ionicPlatform.ready(function () {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -24,18 +24,9 @@ var app = angular.module('musicapp', [
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-  });
-
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyC3cguFGoP4tLHugGGeRr3npX9_HlRrq08",
-    authDomain: "musicapp-e2e06.firebaseapp.com",
-    databaseURL: "https://musicapp-e2e06.firebaseio.com",
-    storageBucket: "musicapp-e2e06.appspot.com"
-  };
-  firebase.initializeApp(config);
-
+  })
 })
+
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider

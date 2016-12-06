@@ -1,6 +1,6 @@
 angular.module('musicapp').service('MusicService',MusicService);
 
-function MusicService($firebaseArray,$http,$q,$log){
+function MusicService($http,$q,$log){
     var service = this;
     var clientid = 'b23455855ab96a4556cbd0a98397ae8c'
 
